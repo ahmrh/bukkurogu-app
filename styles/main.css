@@ -17,7 +17,8 @@
   --outline: #899294;
   --modal-backdrop: #0e141580;
 
-  --on-surface-svg-filter: invert(91%) sepia(4%) saturate(203%) hue-rotate(151deg) brightness(99%) contrast(94%);
+  --on-surface-svg-filter: invert(91%) sepia(4%) saturate(203%)
+    hue-rotate(151deg) brightness(99%) contrast(94%);
 }
 
 .light-mode {
@@ -38,7 +39,8 @@
   --outline: #6f797a;
   --modal-backdrop: #0e141580;
 
-  --on-surface-svg-filter: invert(8%) sepia(22%) saturate(430%) hue-rotate(141deg) brightness(99%) contrast(93%);
+  --on-surface-svg-filter: invert(8%) sepia(22%) saturate(430%)
+    hue-rotate(141deg) brightness(99%) contrast(93%);
 }
 
 /* bukurogu css start here  */
@@ -57,6 +59,42 @@ body {
 }
 
 aside {
+  margin-right: 24px;
+}
+
+aside .divider {
+  border-bottom: 1px solid var(--surface-variant);
+  margin: 24px 0;
+}
+
+.completed-item {
+  background-color: var(--surface-container);
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 8px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+}
+
+.completed-item .text-container {
+  flex-grow: 1;
+}
+
+.completed-item .text-container * {
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.completed-item h1 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.completed-item h2 {
+  font-size: 14px;
 }
 
 #logo {
@@ -82,26 +120,69 @@ header {
   flex-direction: row;
 }
 
-#search-bar{
+.search-bar {
   background: var(--surface-container-high);
+  padding: 4px;
+  padding-right: 28px;
+  border-radius: 28px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-#search-bar img{
+.search-bar:hover {
+  filter: brightness(110%);
+}
+
+.search-bar img {
   filter: var(--on-surface-svg-filter);
+  padding: 8px;
 }
 
-#search-bar input{
+.search-bar input {
   background: var(--surface-container-high);
   color: var(--on-surface-variant);
+  font-size: 16px;
+  flex-grow: 1;
 }
-#search-bar input:focus{
-  border: 0px;
+
+#search-bar {
+  flex-grow: 1;
+  margin-right: 16px;
 }
 
 .icon-button {
-  size: 48px;
+  background: var(--primary);
+  height: 48px;
+  width: 48px;
   border-radius: 100px;
 }
 
 .text-button {
+  padding: 10px 24px 10px 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 100px;
+
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.text-button img {
+  margin-right: 8px;
+}
+
+#add-button {
+  margin-right: 16px;
+}
+button {
+  background: var(--primary);
+}
+button:hover {
+  filter: brightness(90%);
+}
+button:active {
+  filter: brightness(75%);
 }

@@ -13,23 +13,44 @@
         <h1 alt="Logo Title">BOOKLOG</h1>
         <p alt="Logo Subtitle">ブックログ</p>
       </div>
+
+      <div class="divider"></div>
+
+      <h1>Completed</h1>
+      <div id="completed-container">
+        <div class="completed-item">
+          <div class="text-container">
+            <h1>Harry Potter and the Philosopher's Stone</h1>
+            <h2>J.K. Rowling</h2>
+            <h2>1997</h2>
+          </div>
+
+          <button id="revert-button" class="icon-button" onclick="">
+            <img src="assets/icons/revert-icon.svg" alt="Add Button" />
+          </button>
+        </div>
+        
+      </div>
     </aside>
 
     <section>
       <header>
-        <div id="search-bar">
-          <img src="assets/icons/search-icon.svg" >
-          <input type="text"/>
+        <div id="search-bar" class="search-bar">
+          <img src="assets/icons/search-icon.svg" />
+          <input
+            type="text"
+            placeholder="Search book’s title or author’s name "
+          />
         </div>
-        <button id="add-button">
+        <button id="add-button" class="text-button">
           <img src="assets/icons/add-icon.svg" alt="Add Button" />
           Add Book
         </button>
-        <button id="preference-button">
+        <button id="preference-button" class="icon-button">
           <img src="assets/icons/setting-icon.svg" alt="Add Button" />
         </button>
       </header>
-      <main></main>
+      <div id="book-container"></div>
     </section>
   </body>
 
