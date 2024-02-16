@@ -1,71 +1,107 @@
 /* bukurogu color theme  */
 :root {
-    --surface: #0E1415;
-    --surface-container: #1B2122;
-    --surface-container-high: #252B2C;
-    --surface-container-lowest: #090F10;
-    --surface-variant: #3F484A;
-    --on-surface: #DEE3E5;
-    --on-surface-variant: #BFC8CA;
+  --surface: #0e1415;
+  --surface-container: #1b2122;
+  --surface-container-high: #252b2c;
+  --surface-container-lowest: #090f10;
+  --surface-variant: #3f484a;
+  --on-surface: #dee3e5;
+  --on-surface-variant: #bfc8ca;
 
-    --primary: #82D3E0;
-    --on-primary: #00363D;
-    --error: #FFB4AB;
-    --on-error: #690005;
-    --inverse-primary: #006874;
-    
-    --outline: #899294;
-    --modal-backdrop: #0e141580;
+  --primary: #82d3e0;
+  --on-primary: #00363d;
+  --error: #ffb4ab;
+  --on-error: #690005;
+  --inverse-primary: #006874;
+
+  --outline: #899294;
+  --modal-backdrop: #0e141580;
+
+  --on-surface-svg-filter: invert(91%) sepia(4%) saturate(203%) hue-rotate(151deg) brightness(99%) contrast(94%);
 }
 
-.light-mode{
-    --surface: #F5FAFB;
-    --surface-container: #E9EFF0;
-    --surface-container-high: #E3E9EA;
-    --surface-container-lowest: #FFFFFF;
-    --surface-variant: #DBE4E6;
-    --on-surface: #171D1E;
-    --on-surface-variant: #3F484A;
+.light-mode {
+  --surface: #f5fafb;
+  --surface-container: #e9eff0;
+  --surface-container-high: #e3e9ea;
+  --surface-container-lowest: #ffffff;
+  --surface-variant: #dbe4e6;
+  --on-surface: #171d1e;
+  --on-surface-variant: #3f484a;
 
-    --primary: #006874;
-    --on-primary: #FFFFFF;
-    --error: #BA1A1A;
-    --on-error: #FFFFFF;
-    --inverse-primary: #82D3E0;
-    
-    --outline: #6F797A;
-    --modal-backdrop: #0e141580;
+  --primary: #006874;
+  --on-primary: #ffffff;
+  --error: #ba1a1a;
+  --on-error: #ffffff;
+  --inverse-primary: #82d3e0;
+
+  --outline: #6f797a;
+  --modal-backdrop: #0e141580;
+
+  --on-surface-svg-filter: invert(8%) sepia(22%) saturate(430%) hue-rotate(141deg) brightness(99%) contrast(93%);
 }
-
 
 /* bukurogu css start here  */
-.modal{
-    display: none;
+.modal {
+  display: none;
 }
 
-body{
-    background: var(--surface);
-    color: var(--on-surface);
+body {
+  background: var(--surface);
+  color: var(--on-surface);
 
-    padding: 32px;
+  padding: 32px;
+
+  display: flex;
+  flex-direction: row;
 }
 
-header{
-    display: flex;
-    flex-direction: row;
+aside {
 }
 
-
-#logo{
-    padding: 8px;
-    width: 280px;
-
+#logo {
+  padding: 8px;
+  width: 280px;
 }
 
 #logo h1 {
-    font-size: 32px;
-    font-weight: bold;
-} 
+  font-size: 32px;
+  font-weight: bold;
+  padding-bottom: 8px;
+}
 #logo p {
-    font-size: 24px;
+  font-size: 24px;
+}
+
+section {
+  flex-grow: 1;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+}
+
+#search-bar{
+  background: var(--surface-container-high);
+}
+
+#search-bar img{
+  filter: var(--on-surface-svg-filter);
+}
+
+#search-bar input{
+  background: var(--surface-container-high);
+  color: var(--on-surface-variant);
+}
+#search-bar input:focus{
+  border: 0px;
+}
+
+.icon-button {
+  size: 48px;
+  border-radius: 100px;
+}
+
+.text-button {
 }
