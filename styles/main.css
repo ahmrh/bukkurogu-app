@@ -2,6 +2,7 @@
 :root {
   --surface: #0e1415;
   --surface-container: #1b2122;
+  --surface-container-highest: #303637;
   --surface-container-high: #252b2c;
   --surface-container-lowest: #090f10;
   --surface-variant: #3f484a;
@@ -19,11 +20,14 @@
 
   --on-surface-svg-filter: invert(91%) sepia(4%) saturate(203%)
     hue-rotate(151deg) brightness(99%) contrast(94%);
+  --on-primary-svg-filter: brightness(0) saturate(100%) invert(17%) sepia(17%) saturate(2900%) hue-rotate(143deg) brightness(98%) contrast(104%);
+  --on-error-svg-filter: filter: brightness(0) saturate(100%) invert(13%) sepia(37%) saturate(7443%) hue-rotate(339deg) brightness(63%) contrast(122%);
 }
 
 .light-mode {
   --surface: #f5fafb;
   --surface-container: #e9eff0;
+  --surface-container-highest: #DEE3E5;
   --surface-container-high: #e3e9ea;
   --surface-container-lowest: #ffffff;
   --surface-variant: #dbe4e6;
@@ -41,25 +45,193 @@
 
   --on-surface-svg-filter: invert(8%) sepia(22%) saturate(430%)
     hue-rotate(141deg) brightness(99%) contrast(93%);
+  --on-primary-svg-filter: brightness(0) saturate(100%) invert(100%) sepia(93%)
+    saturate(0%) hue-rotate(231deg) brightness(106%) contrast(108%);
+  --on-error-svg-filter: brightness(0) saturate(100%) invert(100%) sepia(93%) saturate(0%) hue-rotate(231deg) brightness(106%) contrast(108%);
 }
 
 /* bukurogu css start here  */
-.modal {
-  display: none;
+
+::-webkit-scrollbar {
+  width: 4px;
 }
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 4px var(--on-surface-variant);
+  border-radius: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--on-surface);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--on-surface);
+}
+h1 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+h2 {
+  font-size: 16px;
+}
+html{
+  position: relative;
+}
+
+footer{
+  height: 48px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+
+  font-weight: 500;
+}
+
+.modal {
+  
+  top: 0;
+  left: 0;
+  position: absolute;
+  /* background: var(--modal-backdrop); */
+  height: 100vh;
+  width: 100vw;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.modal > *{
+
+  position: absolute;
+}
+.modal .backdrop{
+
+  background: var(--modal-backdrop);
+  height: 100%;
+  width: 100%; 
+}
+
+.modal .box{
+  z-index: 1;
+
+  background: var(--surface-container-high);
+
+  border-radius: 28px;
+  min-height: 200px;
+  width: 560px;
+
+  display: flex;
+  flex-direction: column;
+
+}
+
+.modal .box .header{
+  padding: 32px 32px  16px;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.modal .box .content{
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 32px;
+}
+
+.modal .box .content> * {
+
+  margin: 12px 0;
+}
+
+.text-field {
+  box-sizing: border-box;
+  border-radius: 4px;
+  background: #ffffff00;
+  color: var(--on-surface);
+  border: 1px solid var(--outline) !important;
+  padding: 4px 16px;
+
+  height: 48px;
+
+  font-size: 16px;
+}
+
+.text-field:focus{
+
+  border: 2px solid var(--outline) !important;
+}
+
+.modal .checkbox-container{
+  padding-top: 8px;
+  
+  font-size: 16px;
+
+}
+.modal .checkbox-container> *{
+  margin-left: 16px;
+
+}
+.modal .box .footer{
+  padding: 0px 32px 24px 32px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+
+.text-button{
+  color: var(--primary);
+  border-radius: 16px;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight:bold;
+}
+
+.text-button:hover{
+  background: var(--surface-container);
+  cursor: pointer;
+}
+
 
 body {
   background: var(--surface);
   color: var(--on-surface);
 
-  padding: 32px;
 
+  overflow-y: hidden;
+  
+}
+
+main{
+
+  padding: 32px 32px 0 32px;
   display: flex;
   flex-direction: row;
+
+  height: 90vh;
 }
 
 aside {
   margin-right: 24px;
+  width: 420px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.aside-title{
+  margin-bottom: 8px;
 }
 
 aside .divider {
@@ -67,10 +239,16 @@ aside .divider {
   margin: 24px 0;
 }
 
+aside .completed-container {
+  overflow-y: scroll;
+  padding-right: 16px;
+}
+
+
 .completed-item {
   background-color: var(--surface-container);
   padding: 12px;
-  margin-top: 10px;
+  margin-top: 16px;
   border-radius: 8px;
 
   display: flex;
@@ -86,20 +264,14 @@ aside .divider {
   margin-bottom: 12px;
   font-weight: 500;
 }
-
-.completed-item h1 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 1.4;
+.completed-item button {
+  width: 56px;
 }
 
-.completed-item h2 {
-  font-size: 14px;
-}
+
 
 #logo {
   padding: 8px;
-  width: 280px;
 }
 
 #logo h1 {
@@ -113,11 +285,15 @@ aside .divider {
 
 section {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-header {
+section header {
   display: flex;
   flex-direction: row;
+
+  margin-top: 16px;
 }
 
 .search-bar {
@@ -143,7 +319,7 @@ header {
 .search-bar input {
   background: var(--surface-container-high);
   color: var(--on-surface-variant);
-  font-size: 16px;
+  font-size: 18px;
   flex-grow: 1;
 }
 
@@ -159,30 +335,182 @@ header {
   border-radius: 100px;
 }
 
-.text-button {
+.icon-button img {
+  filter: var(--on-primary-svg-filter);
+}
+
+.icon-button[completed="true"]{
+  background: var(--inverse-primary);
+}
+.icon-button[completed="true"] img{
+  filter: var(--on-surface-svg-filter);
+}
+
+#delete-button{
+  background: var(--error);
+}
+
+
+#delete-button img {
+  filter: var(--on-error-svg-filter);
+}
+
+#revert-button{
+  background: var(--inverse-primary);
+}
+#revert-button img {
+  filter: var(--on-surface-svg-filter);
+}
+
+.button {
+  background: var(--primary);
   padding: 10px 24px 10px 16px;
   display: flex;
   flex-direction: row;
   align-items: center;
   border-radius: 100px;
 
+  color: var(--on-primary);
+
   font-weight: 500;
   font-size: 14px;
 }
 
-.text-button img {
+.button img {
   margin-right: 8px;
+  filter: var(--on-primary-svg-filter);
 }
 
 #add-button {
   margin-right: 16px;
-}
-button {
-  background: var(--primary);
-}
+} 
 button:hover {
   filter: brightness(90%);
+
+  cursor: pointer;
 }
 button:active {
   filter: brightness(75%);
+}
+
+.book-container{
+  flex-grow: 1;
+  background: var(--surface-container-lowest);
+  margin-top: 48px;
+  padding-right: 16px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-template-rows: repeat(auto-fit, 160px);
+  gap: 1rem;
+
+  overflow-y: scroll;
+  flex-grow: 1;
+}
+
+.book-item{
+  background: var(--surface-container);
+  border-radius: 8px;
+  max-height: 150px;
+
+  padding: 8px;
+  position: relative;
+}
+.book-item .text-container * {
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+
+
+.book-item .flex-container{
+
+  display: flex;
+  flex-direction: row;
+}
+.book-item .flex-container>img{
+  width: 100px;
+  height: 150px;
+  margin-right: 8px;
+}
+
+.book-item .button-container{
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+}
+
+.checkbox-container{
+  display: flex;
+  flex-direction: row;
+}
+
+
+/* checkbox  */
+.checkbox-wrapper-2{
+  transform: scale(1.5);
+}
+
+
+.checkbox-wrapper-2 .ikxBAC {
+  appearance: none;
+  background-color: var(--surface-container-highest);
+  border-radius: 72px;
+  border-style: none;
+  flex-shrink: 0;
+  height: 20px;
+  margin: 0;
+  position: relative;
+  width: 30px;
+}
+
+.checkbox-wrapper-2 .ikxBAC::before {
+  bottom: -6px;
+  content: "";
+  left: -6px;
+  position: absolute;
+  right: -6px;
+  top: -6px;
+}
+
+.checkbox-wrapper-2 .ikxBAC,
+.checkbox-wrapper-2 .ikxBAC::after {
+  transition: all 100ms ease-out;
+}
+
+.checkbox-wrapper-2 .ikxBAC::after {
+  background-color: var(--outline);
+  border-radius: 50%;
+  content: "";
+  height: 14px;
+  left: 3px;
+  position: absolute;
+  top: 3px;
+  width: 14px;
+}
+
+.checkbox-wrapper-2 input[type=checkbox] {
+  cursor: default;
+}
+
+.checkbox-wrapper-2 .ikxBAC:hover {
+  filter: brightness(80%);
+  transition-duration: 0s;
+}
+
+.checkbox-wrapper-2 .ikxBAC:checked {
+  background-color: var(--primary);
+}
+
+.checkbox-wrapper-2 .ikxBAC:checked::after {
+  background-color: var(--on-primary);
+  left: 13px;
+}
+
+.checkbox-wrapper-2 :focus:not(.focus-visible) {
+  outline: 0;
+}
+
+.checkbox-wrapper-2 .ikxBAC:checked:hover {
+  filter: brightness(80%);
 }

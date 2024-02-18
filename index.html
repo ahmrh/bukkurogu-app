@@ -3,58 +3,109 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ブクログ - Home</title>
+    <title>ブックログ App</title>
     <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/main.css" />
+    <script src="scripts/script.js"></script>
   </head>
   <body>
-    <aside>
-      <div id="logo">
-        <h1 alt="Logo Title">BOOKLOG</h1>
-        <p alt="Logo Subtitle">ブックログ</p>
-      </div>
+    <main>
+      <aside>
+        <div id="logo">
+          <h1 alt="Logo Title">BOOKLOG</h1>
+          <p alt="Logo Subtitle">ブックログ</p>
+        </div>
 
-      <div class="divider"></div>
+        <div class="divider"></div>
 
-      <h1>Completed</h1>
-      <div id="completed-container">
-        <div class="completed-item">
-          <div class="text-container">
-            <h1>Harry Potter and the Philosopher's Stone</h1>
-            <h2>J.K. Rowling</h2>
-            <h2>1997</h2>
+        <h1 class="aside-title">Completed</h1>
+        <div class="completed-container">
+          <!-- Completed Item Goes Here -->
+        </div>
+      </aside>
+
+      <section>
+        <header>
+          <div id="search-bar" class="search-bar">
+            <img src="assets/icons/search-icon.svg" />
+            <input
+              type="text"
+              placeholder="Search book’s title or author’s name "
+            />
           </div>
-
-          <button id="revert-button" class="icon-button" onclick="">
-            <img src="assets/icons/revert-icon.svg" alt="Add Button" />
+          <button id="add-button" class="button">
+            <img src="assets/icons/add-icon.svg" alt="Add Button" />
+            Add Book
           </button>
+          <button id="preference-button" class="icon-button">
+            <img src="assets/icons/setting-icon.svg" alt="Preference Button" />
+          </button>
+        </header>
+        <div class="book-container">
+          <!-- Book Item Goes Here -->
         </div>
-        
-      </div>
-    </aside>
+      </section>
+    </main>
 
-    <section>
-      <header>
-        <div id="search-bar" class="search-bar">
-          <img src="assets/icons/search-icon.svg" />
-          <input
-            type="text"
-            placeholder="Search book’s title or author’s name "
-          />
-        </div>
-        <button id="add-button" class="text-button">
-          <img src="assets/icons/add-icon.svg" alt="Add Button" />
-          Add Book
-        </button>
-        <button id="preference-button" class="icon-button">
-          <img src="assets/icons/setting-icon.svg" alt="Add Button" />
-        </button>
-      </header>
-      <div id="book-container"></div>
-    </section>
+    <footer>© 2024 ahmrh. Personal use only.</footer>
   </body>
 
-  <div id="add-book-modal" class="modal"></div>
-  <div id="preference-modal" class="modal"></div>
-  <div id="alert-modal" class="modal"></div>
+  <div id="add-book-modal" class="modal">
+    <div class="box">
+      <div class="header">Add Book</div>
+      <div class="content">
+        <input
+          type="text"
+          class="text-field"
+          id="title"
+          placeholder="Book's title"
+        />
+        <input
+          type="text"
+          class="text-field"
+          id="author"
+          placeholder="Author's name"
+        />
+        <input type="text" class="text-field" id="year" placeholder="Year" />
+        <div class="checkbox-container">
+          Read Completed
+          <div class="checkbox-wrapper-2">
+            <input id="completed" type="checkbox" class="sc-gJwTLC ikxBAC" />
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <button class="text-button">Save</button>
+      </div>
+    </div>
+    <div class="backdrop"></div>
+  </div>
+  <div id="preference-modal" class="modal">
+    <div class="box">
+      <div class="header">Preference</div>
+      <div class="content">
+        <div class="checkbox-container">
+          Light Mode
+          <div class="checkbox-wrapper-2">
+            <input id="completed" type="checkbox" class="sc-gJwTLC ikxBAC" />
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <button class="text-button">Save</button>
+      </div>
+    </div>
+    <div class="backdrop"></div>
+  </div>
+
+  <div id="alert-modal" class="modal">
+    <div class="box">
+      <div class="header">Alert Modal</div>
+      <div class="content"></div>
+      <div class="footer">
+        <button class="text-button">Close</button>
+      </div>
+    </div>
+    <div class="backdrop"></div>
+  </div>
 </html>
