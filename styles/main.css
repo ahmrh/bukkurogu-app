@@ -96,6 +96,7 @@ footer{
   font-weight: 500;
 }
 
+
 .modal {
   
   top: 0;
@@ -168,9 +169,17 @@ footer{
   font-size: 16px;
 }
 
+
 .text-field:focus{
 
   border: 2px solid var(--outline) !important;
+}
+.text-field::after{
+  display: none;
+}
+
+.text-field[valid="false"]{
+  border: 2px solid var(--error) !important;
 }
 
 .modal .checkbox-container{
@@ -444,6 +453,7 @@ button:active {
   display: flex;
   flex-direction: row;
 }
+
 
 
 /* checkbox  */

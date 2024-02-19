@@ -59,14 +59,25 @@
           class="text-field"
           id="title"
           placeholder="Book's title"
+          required
+          valid="true"
         />
         <input
           type="text"
           class="text-field"
           id="author"
           placeholder="Author's name"
+          required
+          valid="true"
         />
-        <input type="text" class="text-field" id="year" placeholder="Year" />
+        <input
+          type="text"
+          class="text-field"
+          id="year"
+          placeholder="Year"
+          required
+          valid="true"
+        />
         <div class="checkbox-container">
           Read Completed
           <div class="checkbox-wrapper-2">
@@ -87,23 +98,16 @@
         <div class="checkbox-container">
           Light Mode
           <div class="checkbox-wrapper-2">
-            <input id="completed" type="checkbox" class="sc-gJwTLC ikxBAC" />
+            <input
+              id="light-mode-checkbox"
+              type="checkbox"
+              class="sc-gJwTLC ikxBAC"
+            />
           </div>
         </div>
       </div>
       <div class="footer">
         <button class="text-button">Save</button>
-      </div>
-    </div>
-    <div class="backdrop"></div>
-  </div>
-
-  <div id="alert-modal" class="modal">
-    <div class="box">
-      <div class="header">Alert Modal</div>
-      <div class="content"></div>
-      <div class="footer">
-        <button class="text-button">Close</button>
       </div>
     </div>
     <div class="backdrop"></div>
