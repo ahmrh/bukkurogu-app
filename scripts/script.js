@@ -89,7 +89,6 @@ function changePreference(preferenceObject) {
   preference.lightMode = preferenceObject.lightMode;
 
   document.dispatchEvent(new Event(RENDER_EVENT));
-  saveDataToStorage();
 }
 
 function removeBook(bookId) {
@@ -353,8 +352,11 @@ document.addEventListener(MODAL_OPEN_EVENT, function (event) {
       modal.style.display = "flex";
       lightModeCheckbox.checked = preference.lightMode;
 
+      const previousPreference = preference.lightMode;
+
       const backdrop = modal.querySelector(".backdrop");
       backdrop.addEventListener("click", function () {
+        changePreference({ lightMode: previousPreference });
         document.dispatchEvent(new Event(MODAL_CLOSE_EVENT));
       });
 
@@ -365,6 +367,8 @@ document.addEventListener(MODAL_OPEN_EVENT, function (event) {
       const saveButton = modal.querySelector(".footer button");
       saveButton.addEventListener("click", function () {
         changePreference({ lightMode: lightModeCheckbox.checked });
+        saveDataToStorage();
+
         document.dispatchEvent(new Event(MODAL_CLOSE_EVENT));
       });
 
