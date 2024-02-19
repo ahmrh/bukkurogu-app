@@ -259,10 +259,13 @@ aside .completed-container {
   padding: 12px;
   margin-top: 16px;
   border-radius: 8px;
+  min-width: 160px;
 
   display: flex;
   flex-direction: row;
   align-items: end;
+
+  position: relative;
 }
 
 .completed-item .text-container {
@@ -273,8 +276,12 @@ aside .completed-container {
   margin-bottom: 12px;
   font-weight: 500;
 }
-.completed-item button {
-  width: 56px;
+.completed-item .button-container {
+  width: 112px;
+  
+  position: absolute;
+  right: 0px;
+  bottom: 8px;
 }
 
 

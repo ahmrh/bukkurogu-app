@@ -73,9 +73,9 @@ function saveDataToStorage() {
   console.log("Data saved to storage");
 }
 
-function createBookObject(title, author, year, isCompleted) {
+function createBookObject(title, author, year, isComplete) {
   const id = +new Date();
-  return { id, title, author, year, isCompleted };
+  return { id, title, author, year, isComplete };
 }
 
 function addBook(bookObject) {
@@ -108,7 +108,7 @@ function addBookToCompleted(bookId) {
   for (let i = 0; i < books.length; i++) {
     const book = books[i];
     if (book.id == bookId) {
-      book.isCompleted = true;
+      book.isComplete = true;
       break;
     }
   }
@@ -120,7 +120,7 @@ function removeBookFromCompleted(bookId) {
   for (let i = 0; i < books.length; i++) {
     const book = books[i];
     if (book.id == bookId) {
-      book.isCompleted = false;
+      book.isComplete = false;
       break;
     }
   }
@@ -149,9 +149,14 @@ function createCompletedBookHTMLString(bookObject) {
                 <h2>${bookObject.year}</h2>
             </div>
 
-            <button id="revert-button" class="icon-button" onclick="removeBookFromCompleted(${bookObject.id})">
-                <img src="assets/icons/revert-icon.svg" alt="Revert Button" />
-            </button>
+            <div class="button-container">
+              <button id="revert-button" class="icon-button" onclick="removeBookFromCompleted(${bookObject.id})">
+                  <img src="assets/icons/revert-icon.svg" alt="Revert Button" />
+              </button>
+              <button id="delete-button" class="icon-button" onclick="removeBook(${bookObject.id})">
+                <img src="assets/icons/delete-icon.svg" alt="Delete Button" />
+              </button>
+            </div>
         </div>
     `;
 
@@ -177,7 +182,7 @@ function createBookHTMLString(bookObject) {
 
           <div class="button-container">
             <button id="complete-button" completed="${
-              bookObject.isCompleted
+              bookObject.isComplete
             }" class="icon-button" onclick="${onClickBookCompleteButtonHTMLString(
     bookObject
   )}">
@@ -195,7 +200,7 @@ function createBookHTMLString(bookObject) {
 }
 
 const onClickBookCompleteButtonHTMLString = (bookObject) => {
-  return bookObject.isCompleted
+  return bookObject.isComplete
     ? `removeBookFromCompleted(${bookObject.id})`
     : `addBookToCompleted(${bookObject.id})`;
 };
@@ -219,7 +224,7 @@ document.addEventListener(RENDER_EVENT, function () {
   if (searchValue === undefined) searchValue = "";
 
   for (const book of books) {
-    if (book.isCompleted) {
+    if (book.isComplete) {
       const completedBookHTMLString = createCompletedBookHTMLString(book);
       completedContainerElement.innerHTML += completedBookHTMLString;
     }
@@ -329,7 +334,7 @@ document.addEventListener(MODAL_OPEN_EVENT, function (event) {
         const bookObject = createBookObject(
           titleTextField.value,
           authorTextField.value,
-          yearTextField.value,
+          Number(yearTextField.value),
           completedCheckBox.checked
         );
 
