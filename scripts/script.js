@@ -23,6 +23,7 @@ const STORAGE_KEY = "ブックログ_APP";
 
 var searchBarElement;
 var completedContainerElement;
+var onReadingContainerElement;
 var bookContainerElement;
 var preferenceButtonElement;
 var addButtonElement;
@@ -150,8 +151,32 @@ function createCompletedBookHTMLString(bookObject) {
             </div>
 
             <div class="button-container">
-              <button id="revert-button" class="icon-button" onclick="removeBookFromCompleted(${bookObject.id})">
-                  <img src="assets/icons/revert-icon.svg" alt="Revert Button" />
+              <button class="icon-button" completed="true" onclick="removeBookFromCompleted(${bookObject.id})">
+                  <img src="assets/icons/complete-icon.svg" alt="Revert Button" />
+              </button>
+              <button id="delete-button" class="icon-button" onclick="removeBook(${bookObject.id})">
+                <img src="assets/icons/delete-icon.svg" alt="Delete Button" />
+              </button>
+            </div>
+        </div>
+    `;
+
+  return completedBookHTMLString;
+}
+
+function createOnReadingBookHTMLString(bookObject) {
+  const completedBookHTMLString = `
+        <!-- OnReading Item  -->
+        <div class="completed-item" >
+            <div class="text-container">
+                <h1>${bookObject.title}</h1>
+                <h2>${bookObject.author}</h2>
+                <h2>${bookObject.year}</h2>
+            </div>
+
+            <div class="button-container">
+              <button  class="icon-button" onclick="addBookToCompleted(${bookObject.id})">
+                  <img src="assets/icons/complete-icon.svg" alt="Revert Button" />
               </button>
               <button id="delete-button" class="icon-button" onclick="removeBook(${bookObject.id})">
                 <img src="assets/icons/delete-icon.svg" alt="Delete Button" />
@@ -205,9 +230,14 @@ const onClickBookCompleteButtonHTMLString = (bookObject) => {
     : `addBookToCompleted(${bookObject.id})`;
 };
 
+const emptyBookHTMLString = () => {
+  return `<div class="book-empty">Book is empty, you can add book first</div>`;
+};
+
 document.addEventListener("DOMContentLoaded", function () {
   searchBarElement = document.querySelector("#search-bar input");
   completedContainerElement = document.querySelector(".completed-container");
+  onReadingContainerElement = document.querySelector(".on-reading-container");
   bookContainerElement = document.querySelector(".book-container");
   preferenceButtonElement = document.querySelector("#preference-button");
   addButtonElement = document.querySelector("#add-button");
@@ -217,8 +247,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener(RENDER_EVENT, function () {
-  completedContainerElement.innerHTML = "";
   bookContainerElement.innerHTML = "";
+  onReadingContainerElement.innerHTML = "";
+  completedContainerElement.innerHTML = "";
+  if (books.length === 0) {
+    onReadingContainerElement.innerHTML = emptyBookHTMLString();
+    completedContainerElement.innerHTML = emptyBookHTMLString();
+  }
 
   let searchValue = searchBarElement.value;
   if (searchValue === undefined) searchValue = "";
@@ -227,6 +262,9 @@ document.addEventListener(RENDER_EVENT, function () {
     if (book.isComplete) {
       const completedBookHTMLString = createCompletedBookHTMLString(book);
       completedContainerElement.innerHTML += completedBookHTMLString;
+    } else {
+      const onReadingBookHTMLString = createOnReadingBookHTMLString(book);
+      onReadingContainerElement.innerHTML += onReadingBookHTMLString;
     }
   }
 

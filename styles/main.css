@@ -248,9 +248,17 @@ aside .divider {
   margin: 24px 0;
 }
 
-aside .completed-container {
+aside .completed-container, aside .on-reading-container {
   overflow-y: scroll;
   padding-right: 16px;
+  height: 33vh;
+}
+aside .on-reading-container {
+  margin-bottom: 32px;
+}
+
+aside .book-empty{
+  height: 80px;
 }
 
 
@@ -371,12 +379,6 @@ section header {
   filter: var(--on-error-svg-filter);
 }
 
-#revert-button{
-  background: var(--inverse-primary);
-}
-#revert-button img {
-  filter: var(--on-surface-svg-filter);
-}
 
 .button {
   background: var(--primary);
